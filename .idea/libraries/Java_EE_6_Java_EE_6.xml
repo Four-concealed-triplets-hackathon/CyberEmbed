@@ -11,6 +11,7 @@
       <root url="jar://$PROJECT_DIR$/lib/javax.servlet.jsp.jstl.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/javax.jms.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/jsoup-1.13.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/core-3.4.1.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
