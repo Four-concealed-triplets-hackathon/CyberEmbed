@@ -1,4 +1,6 @@
 package controller;
+import service.SpiderService;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -8,6 +10,8 @@ import java.lang.reflect.Method;
 
 public class CyberServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
+
+    private SpiderService spiderService = new SpiderService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {
