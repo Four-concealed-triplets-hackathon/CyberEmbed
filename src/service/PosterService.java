@@ -5,7 +5,6 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -49,22 +48,7 @@ public class PosterService {
         ArrayList<String> descriptions = new ArrayList<>();
         int lineNumLimit = 5;
         int lineWidthLimit = 500;
-        int lineNum = 0;
-        int charIndex = 0;
-        while (lineNum < lineNumLimit) {
-            StringBuilder s = new StringBuilder();
-            while (charIndex < desc.length()) {
-                if (fontMetrics.stringWidth(s.append(desc.charAt(charIndex++)).toString()) >= lineWidthLimit) {
-                    break;
-                }
-            }
-            descriptions.add(s.toString());
-            lineNum++;
-        }
-        if (charIndex < desc.length() - 1) {
-            String lastStr = descriptions.get(descriptions.size() - 1);
-            descriptions.set(descriptions.size() - 1, lastStr.substring(0, lastStr.length() - 2) + "...");
-        }
+        getStringBlock(desc, fontMetrics, descriptions, lineNumLimit, lineWidthLimit);
 
         g.setFont(new Font("Microsoft YaHei", Font.BOLD, 20));
         g.setColor(Color.BLACK);
@@ -97,74 +81,74 @@ public class PosterService {
         return embed;
     }
 
-    public static BufferedImage generateCnkiPoster(String url, String title, String authors, String abs, String keyWords, String download, String page) {
-        BufferedImage embed = new BufferedImage(1000, 600, BufferedImage.TYPE_INT_RGB);
+    public static BufferedImage generateCnkiPoster(String url, String title, String authors, String abs, String keyWords, String download, String page) throws IOException {
+        BufferedImage embed = new BufferedImage(600, 600, BufferedImage.TYPE_INT_RGB);
         Graphics2D g = embed.createGraphics();
 
         g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 
-//        // fill background
-//        BufferedImage bg = ImageIO.read(new File("./public/img/git_bg.jpg"));
-//        g.drawImage(bg.getScaledInstance(bg.getWidth(), bg.getHeight(), Image.SCALE_SMOOTH), 0, 0, 1000, 600, null);
-        g.setColor(Color.BLACK);
-        g.fillRect(0, 0, 1000, 600);
+        // fill background
+        BufferedImage bg = ImageIO.read(new File("./public/img/resources/embed_cnki_bg.png"));
+        g.drawImage(bg.getScaledInstance(bg.getWidth(), bg.getHeight(), Image.SCALE_SMOOTH), 0, 0, 600, 600, null);
 
-        // add title information
-        g.setFont(new Font("Microsoft YaHei", Font.BOLD, 40));
+        FontMetrics fontMetrics;
+
+        g.setFont(new Font("Microsoft YaHei", Font.BOLD, 30));
         g.setColor(new Color(255, 255, 255));
-        g.drawString(title, 60, 80);
+        fontMetrics = g.getFontMetrics();
 
-        // add other information
-        g.setFont(new Font("Microsoft YaHei", Font.PLAIN, 30));
+        if (title.length() > 17) {
+            title = title.substring(0, 17);
+            title += "...";
+        }
+        g.drawString(title, (600 - fontMetrics.stringWidth(title)) / 2, 150);
+
+        g.setFont(new Font("Microsoft YaHei", Font.PLAIN, 15));
         g.setColor(new Color(255, 255, 255));
+        fontMetrics = g.getFontMetrics();
 
-        g.drawString("Authors: ", 60, 180);
-        g.drawString(authors, 90, 210);
+        if (authors.length() > 27) {
+            authors = authors.substring(0, 27);
+            authors += "...";
+        }
+        g.drawString(authors, (600 - fontMetrics.stringWidth(authors)) / 2, 180);
 
-        g.drawString("Key words: " + keyWords, 60, 240);
+        if (keyWords.length() > 27) {
+            keyWords = keyWords.substring(0, 27);
+            keyWords += "...";
+        }
+        g.drawString("Key words: " + keyWords, 40, 220);
 
-        FontMetrics fontMetrics = g.getFontMetrics();
         ArrayList<String> descriptions = new ArrayList<>();
-        int lineNumLimit = 5;
+        int lineNumLimit = 4;
         int lineWidthLimit = 500;
-        int lineNum = 0;
-        int charIndex = 0;
-        while (lineNum < lineNumLimit) {
-            StringBuilder s = new StringBuilder();
-            while (charIndex < abs.length()) {
-                if (fontMetrics.stringWidth(s.append(abs.charAt(charIndex++)).toString()) >= lineWidthLimit) {
-                    break;
-                }
-            }
-            descriptions.add(s.toString());
-            lineNum++;
-        }
-        if (charIndex < abs.length() - 1) {
-            String lastStr = descriptions.get(descriptions.size() - 1);
-            descriptions.set(descriptions.size() - 1, lastStr.substring(0, lastStr.length() - 2) + "...");
-        }
+        getStringBlock(abs, fontMetrics, descriptions, lineNumLimit, lineWidthLimit);
 
-        g.drawString("Description: ", 60, 240);
+        g.drawString("Abstract: ", 40, 250);
         for (int i = 0; i < descriptions.size(); i++) {
             String s = descriptions.get(i);
-            g.drawString(descriptions.get(i), 90, 270 + (i * 30));
+            g.drawString(descriptions.get(i), 40, 280 + (i * 30));
         }
 
-        g.drawString("downloads: " + download, 60, 500);
-        g.drawString("pages: " + page, 240, 500);
+        g.drawString("downloads: " + download, 40, 447);
+        g.drawString("pages: " + page, 40, 477);
+
+        g.setFont(new Font("Microsoft YaHei", Font.ITALIC, 15));
+        g.setColor(Color.GRAY);
+        g.drawString("www.cnki.net", 40, 545);
+        g.drawString("© 2020 CyberEmbed, Inc. All Rights Preserved", 40, 575);
 
         // create qr code
         BufferedImage qrCode = createQrCode(url, 300, 300, "./public/img/resources/cnki_logo.png");
-        g.drawImage(qrCode.getScaledInstance(qrCode.getWidth(), qrCode.getHeight(), Image.SCALE_SMOOTH), 750, 40, 200, 200, null);
-
+        g.drawImage(qrCode.getScaledInstance(qrCode.getWidth(), qrCode.getHeight(), Image.SCALE_SMOOTH), 430, 430, 140, 140, null);
         // release resource
         g.dispose();
 
         return embed;
     }
 
-    private static BufferedImage generateSteamPoster(String url,String headerUrl, String description, String recentComment,String allComment, String firstTag) throws IOException {
+    private static BufferedImage generateSteamPoster(String url, String headerUrl, String description, String recentComment, String allComment, String firstTag) throws IOException {
         BufferedImage embed = new BufferedImage(460, 501, BufferedImage.TYPE_INT_RGB);
         Graphics2D g = embed.createGraphics();
 
@@ -175,7 +159,7 @@ public class PosterService {
         g.drawImage(bg.getScaledInstance(bg.getWidth(), bg.getHeight(), Image.SCALE_SMOOTH), 0, 0, 460, 501, null);
         //绘制头图
         BufferedImage header = ImageIO.read(new ByteArrayInputStream(readOnlineImage(headerUrl)));
-        g.drawImage(header.getScaledInstance(header.getWidth(), header.getHeight(), Image.SCALE_SMOOTH), 0, 0, 460 , 215, null);
+        g.drawImage(header.getScaledInstance(header.getWidth(), header.getHeight(), Image.SCALE_SMOOTH), 0, 0, 460, 215, null);
 
         g.setFont(new Font("Microsoft YaHei", Font.PLAIN, 17));
         g.setColor(new Color(255, 255, 255));
@@ -184,6 +168,26 @@ public class PosterService {
         ArrayList<String> descriptions = new ArrayList<>();
         int lineNumLimit = 4;
         int lineWidthLimit = 410;
+        getStringBlock(description, fontMetrics, descriptions, lineNumLimit, lineWidthLimit);
+        for (int i = 0; i < descriptions.size(); i++) {
+            String s = descriptions.get(i);
+            g.drawString(descriptions.get(i), 22, 245 + (i * 20));
+        }
+        g.setFont(new Font("Microsoft YaHei", Font.PLAIN, 17));
+        g.setColor(new Color(255, 255, 255));
+        g.drawString("最近评论：" + recentComment, 24, 330);
+        g.drawString("全部评论：" + allComment, 24, 360);
+        g.drawString("热门标签：", 24, 390);
+        g.setColor(new Color(101, 192, 241));
+        g.drawString(firstTag, 46, 440);
+        //326 348
+        BufferedImage qrCode = createQrCode(url, 400, 400, "./public/img/resources/steam_logo.png");
+        g.drawImage(qrCode.getScaledInstance(qrCode.getWidth(), qrCode.getHeight(), Image.SCALE_SMOOTH), 326, 348, 120, 120, null);
+        g.dispose();
+        return embed;
+    }
+
+    private static void getStringBlock(String description, FontMetrics fontMetrics, ArrayList<String> descriptions, int lineNumLimit, int lineWidthLimit) {
         int lineNum = 0;
         int charIndex = 0;
         while (lineNum < lineNumLimit) {
@@ -200,22 +204,6 @@ public class PosterService {
             String lastStr = descriptions.get(descriptions.size() - 1);
             descriptions.set(descriptions.size() - 1, lastStr.substring(0, lastStr.length() - 2) + "...");
         }
-        for (int i = 0; i < descriptions.size(); i++) {
-            String s = descriptions.get(i);
-            g.drawString(descriptions.get(i), 22, 245 + (i * 20));
-        }
-        g.setFont(new Font("Microsoft YaHei", Font.PLAIN, 17));
-        g.setColor(new Color(255, 255, 255));
-        g.drawString("最近评论："+recentComment,24,330);
-        g.drawString("全部评论："+allComment,24,360);
-        g.drawString("热门标签：",24,390);
-        g.setColor(new Color(101, 192, 241));
-        g.drawString(firstTag,46,440);
-        //326 348
-        BufferedImage qrCode = createQrCode(url, 400, 400, "./public/img/resources/steam_logo.png");
-        g.drawImage(qrCode.getScaledInstance(qrCode.getWidth(), qrCode.getHeight(), Image.SCALE_SMOOTH), 326, 348, 120, 120, null);
-        g.dispose();
-        return embed;
     }
 
     private static final int BLACK = 0xFF000000;
@@ -259,10 +247,10 @@ public class PosterService {
         }
         return null;
     }
-    
+
     public static byte[] readOnlineImage(String s) throws IOException {
         URL url = new URL(s);
-        HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
         conn.setConnectTimeout(5 * 1000);
         InputStream inStream = conn.getInputStream();
@@ -274,7 +262,7 @@ public class PosterService {
         ByteArrayOutputStream outStream = new ByteArrayOutputStream();
         byte[] buffer = new byte[1024];
         int len = 0;
-        while( (len=inStream.read(buffer)) != -1 ){
+        while ((len = inStream.read(buffer)) != -1) {
             outStream.write(buffer, 0, len);
         }
         inStream.close();
