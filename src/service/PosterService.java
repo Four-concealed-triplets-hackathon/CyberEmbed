@@ -36,23 +36,6 @@ public class PosterService {
         g.setColor(new Color(255, 255, 255));
         g.drawString(title, 60, 80);
 
-        desc = desc.substring(0, Math.min(150, desc.length()));
-        String[] words = desc.split("\\s+");
-        ArrayList<String> descriptions = new ArrayList<>();
-        int lineLimit = 30;
-        int lineNum = 0;
-        StringBuilder s = new StringBuilder();
-        int wordsIndex = 0;
-        while (wordsIndex < words.length) {
-            while (wordsIndex < words.length && lineNum + words[wordsIndex].length() < lineLimit) {
-                s.append(words[wordsIndex]).append(" ");
-                lineNum += words[wordsIndex++].length();
-            }
-            descriptions.add(s.toString());
-            lineNum = 0;
-            s = new StringBuilder();
-        }
-
         // add other information
         g.setFont(new Font("Microsoft YaHei", Font.PLAIN, 30));
         g.setColor(new Color(255, 255, 255));
@@ -60,8 +43,30 @@ public class PosterService {
         g.drawString("Authors: ", 60, 180);
         g.drawString(author, 90, 210);
 
+        FontMetrics fontMetrics = g.getFontMetrics();
+        ArrayList<String> descriptions = new ArrayList<>();
+        int lineNumLimit = 5;
+        int lineWidthLimit = 500;
+        int lineNum = 0;
+        int charIndex = 0;
+        while (lineNum < lineNumLimit) {
+            StringBuilder s = new StringBuilder();
+            while (charIndex < desc.length()) {
+                if (fontMetrics.stringWidth(s.append(desc.charAt(charIndex++)).toString()) >= lineWidthLimit) {
+                    break;
+                }
+            }
+            descriptions.add(s.toString());
+            lineNum++;
+        }
+        if (charIndex < desc.length() - 1) {
+            String lastStr = descriptions.get(descriptions.size() - 1);
+            descriptions.set(descriptions.size() - 1, lastStr.substring(0, lastStr.length() - 2) + "...");
+        }
+
         g.drawString("Description: ", 60, 240);
         for (int i = 0; i < descriptions.size(); i++) {
+            String s = descriptions.get(i);
             g.drawString(descriptions.get(i), 90, 270 + (i * 30));
         }
 
@@ -96,23 +101,6 @@ public class PosterService {
         g.setColor(new Color(255, 255, 255));
         g.drawString(title, 60, 80);
 
-        abs = abs.substring(0, Math.min(150, abs.length()));
-        String[] words = abs.split("\\s+");
-        ArrayList<String> abstracts = new ArrayList<>();
-        int lineLimit = 30;
-        int lineNum = 0;
-        StringBuilder s = new StringBuilder();
-        int wordsIndex = 0;
-        while (wordsIndex < words.length) {
-            while (wordsIndex < words.length && lineNum + words[wordsIndex].length() < lineLimit) {
-                s.append(words[wordsIndex]).append(" ");
-                lineNum += words[wordsIndex++].length();
-            }
-            abstracts.add(s.toString());
-            lineNum = 0;
-            s = new StringBuilder();
-        }
-
         // add other information
         g.setFont(new Font("Microsoft YaHei", Font.PLAIN, 30));
         g.setColor(new Color(255, 255, 255));
@@ -122,9 +110,31 @@ public class PosterService {
 
         g.drawString("Key words: " + keyWords, 60, 240);
 
-        g.drawString("Abstract: ", 60, 270);
-        for (int i = 0; i < abstracts.size(); i++) {
-            g.drawString(abstracts.get(i), 90, 300 + (i * 30));
+        FontMetrics fontMetrics = g.getFontMetrics();
+        ArrayList<String> descriptions = new ArrayList<>();
+        int lineNumLimit = 5;
+        int lineWidthLimit = 500;
+        int lineNum = 0;
+        int charIndex = 0;
+        while (lineNum < lineNumLimit) {
+            StringBuilder s = new StringBuilder();
+            while (charIndex < abs.length()) {
+                if (fontMetrics.stringWidth(s.append(abs.charAt(charIndex++)).toString()) >= lineWidthLimit) {
+                    break;
+                }
+            }
+            descriptions.add(s.toString());
+            lineNum++;
+        }
+        if (charIndex < abs.length() - 1) {
+            String lastStr = descriptions.get(descriptions.size() - 1);
+            descriptions.set(descriptions.size() - 1, lastStr.substring(0, lastStr.length() - 2) + "...");
+        }
+
+        g.drawString("Description: ", 60, 240);
+        for (int i = 0; i < descriptions.size(); i++) {
+            String s = descriptions.get(i);
+            g.drawString(descriptions.get(i), 90, 270 + (i * 30));
         }
 
         g.drawString("downloads: " + download, 60, 500);
@@ -202,6 +212,5 @@ public class PosterService {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 }
