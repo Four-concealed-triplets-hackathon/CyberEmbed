@@ -11,6 +11,8 @@ import java.io.File;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class SpiderService {
     public static String getEmbed(String url) {
@@ -63,10 +65,15 @@ public class SpiderService {
                 String desc = document.select("[class=game_description_snippet]").text();
                 Elements info = document.select("[class=summary column]");
                 String recentReview = info.get(0).children().get(0).text() + info.get(0).children().get(1).text();
-                String allReview = info.get(1).children().get(0).text() + info.get(1).children().get(1).text();
+                String allReview = "";
+                if(info.size()<4) allReview = recentReview;
+                else allReview = info.get(1).children().get(0).text() + info.get(1).children().get(1).text();
                 String tag = document.select("[class=glance_tags popular_tags]").get(0).children().get(0).text();
                 BufferedImage image = PosterService.generateSteamPoster(url, header_photo, desc, recentReview, allReview, tag);
-                String name = title.replaceAll(" ", "");
+                String name = title;
+                Pattern pattern = Pattern.compile("[\\s\\\\/:\\*\\?\\\"<>\\|]");
+                Matcher matcher = pattern.matcher(name);
+                name= matcher.replaceAll(""); // 将匹配到的非法字符以空替换
                 String outputPath = "./public/img/steam/"+name+".jpg";
                 ImageIO.write(image, "jpg", new File(outputPath));
                 return "/CyberEmbed_Web_exploded/public/img/steam/"+name+".jpg";
@@ -86,6 +93,7 @@ public class SpiderService {
 //        getEmbed("https://kns.cnki.net/KCMS/detail/11.3536.F.20201120.1432.020.html");
 //        testImage();
 //        getEmbed("https://store.steampowered.com/app/1217060/_/");
-        getEmbed("https://store.steampowered.com/app/578080/PLAYERUNKNOWNS_BATTLEGROUNDS/");
+//        getEmbed("https://store.steampowered.com/app/578080/PLAYERUNKNOWNS_BATTLEGROUNDS/");
+        getEmbed("https://store.steampowered.com/app/292030/_3/");
     }
 }
