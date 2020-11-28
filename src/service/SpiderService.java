@@ -73,7 +73,7 @@ public class SpiderService {
                 String name = title;
                 Pattern pattern = Pattern.compile("[\\s\\\\/:\\*\\?\\\"<>\\|]");
                 Matcher matcher = pattern.matcher(name);
-                name= matcher.replaceAll(""); // 将匹配到的非法字符以空替换
+                name= matcher.replaceAll("").replaceAll("[^0-9a-zA-Z]J*","");
                 String outputPath = "./public/img/steam/"+name+".jpg";
                 ImageIO.write(image, "jpg", new File(outputPath));
                 return "/CyberEmbed_Web_exploded/public/img/steam/"+name+".jpg";
