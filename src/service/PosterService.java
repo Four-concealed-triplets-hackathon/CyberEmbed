@@ -26,7 +26,7 @@ public class PosterService {
         g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 
         // fill background
-        BufferedImage bg = ImageIO.read(new File("./public/img/resources/embel_github_bg.png"));
+        BufferedImage bg = ImageIO.read(new File("./public/img/resources/embed_github_bg.png"));
         g.drawImage(bg.getScaledInstance(bg.getWidth(), bg.getHeight(), Image.SCALE_SMOOTH), 0, 0, 600, 800, null);
 
         // add author information
