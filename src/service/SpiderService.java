@@ -66,7 +66,7 @@ public class SpiderService {
                 String allReview = info.get(1).children().get(0).text() + info.get(1).children().get(1).text();
                 String tag = document.select("[class=glance_tags popular_tags]").get(0).children().get(0).text();
                 BufferedImage image = PosterService.generateSteamPoster(url, header_photo, desc, recentReview, allReview, tag);
-                String name = title;
+                String name = title.replaceAll(" ", "");
                 String outputPath = "./public/img/steam/"+name+".jpg";
                 ImageIO.write(image, "jpg", new File(outputPath));
                 return "/CyberEmbed_Web_exploded/public/img/steam/"+name+".jpg";
@@ -75,6 +75,7 @@ public class SpiderService {
                 return new String("parse url error");
             }
         } catch (Exception e) {
+            e.printStackTrace();
             return new String("parse url error");
         }
     }
