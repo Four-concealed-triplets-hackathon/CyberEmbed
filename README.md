@@ -1,8 +1,13 @@
-<img src="./public/img/resources/题图.png" alt="题图" style="align: center" />
-
+<p align="center">
+	<br>
+		<img src="./public/img/resources/题图.png" alt="题图" />
+	<br>
+<p>
 [![GitHub](https://camo.githubusercontent.com/8e97671814c8ac48e391c566421747af746b54a9482210d3f93847498e4d3124/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f6c6963656e73652f68756767696e67666163652f7472616e73666f726d6572732e7376673f636f6c6f723d626c7565)](https://github.com/Four-concealed-triplets-hackathon/CyberEmbed/blob/main/LICENSE)
 
 Hackathon2020@eastchina, Team Four Concealed Triplets. A website that can embed website content into a single image (supporting Github, CNKI, Twitter, Spotify).
+
+[中文版](https://github.com/Four-concealed-triplets-hackathon/CyberEmbed/blob/main/README_zh.md)
 
 ## Table of Contents
 
@@ -19,10 +24,10 @@ Hackathon2020@eastchina, Team Four Concealed Triplets. A website that can embed 
 ⚡CyberEmbed supports the concept of "software as a service" (SAAS), and you can use our powerful tool by simply visiting our website ([https://](https://)) and entering the URL of the web page you want to share. And then, you can get the generated image and share it with your friends!
 
 ⚡CyberEmbed supports:
-* Github
-* CNKI
-* Twitter
-* Spotify
+* Github <img src="./public/img/resources/github_logo.png" alt="github" style="zoom:18%;" />
+* CNKI <img src="./public/img/resources/cnki.png" alt="twitter" style="zoom:140%;" />
+* Twitter <img src="./public/img/resources/twitter.png" alt="twitter" style="zoom:75%;" />
+* Spotify  <img src="./public/img/resources/Spotify.png" alt="twitter" style="zoom:4%;" />
 
 ## Insight
 

@@ -1,4 +1,8 @@
-<img src="./public/img/resources/题图.png" alt="题图" style="align: center" />
+<p align="center">
+	<br>
+		<img src="./public/img/resources/题图.png" alt="题图" />
+	<br>
+<p>
 
 [![GitHub](https://camo.githubusercontent.com/8e97671814c8ac48e391c566421747af746b54a9482210d3f93847498e4d3124/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f6c6963656e73652f68756767696e67666163652f7472616e73666f726d6572732e7376673f636f6c6f723d626c7565)](https://github.com/Four-concealed-triplets-hackathon/CyberEmbed/blob/main/LICENSE)
 
@@ -21,10 +25,10 @@ Hackathon2020@eastchina， Team 四暗刻。
 ⚡CyberEmbed采用了“软件即服务”（SAAS）的理念。你只需要访问我们的网站 ([https://](https://)) 并且键入你要分享的资源的URL，你就可以使用我们强大的工具，获取生成的图片并将其分享给你的朋友！
 
 ⚡CyberEmbed 支持:
-* Github
-* 知网
-* 推特
-* Spotify
+* Github <img src="/home/xuanzitao/work/CyberEmbed/public/img/resources/github_logo.png" alt="github" style="zoom:18%;" />
+* 知网 <img src="/home/xuanzitao/work/CyberEmbed/public/img/resources/cnki.png" alt="twitter" style="zoom:140%;" />
+* 推特 <img src="/home/xuanzitao/work/CyberEmbed/public/img/resources/twitter.png" alt="twitter" style="zoom:75%;" />
+* Spotify  <img src="./public/img/resources/Spotify.png" alt="twitter" style="zoom:4%;" />
 
 # 灵感
 
