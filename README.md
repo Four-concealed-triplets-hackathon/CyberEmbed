@@ -30,7 +30,7 @@ Hackathon2020@eastchina, Team Four Concealed Triplets. A website that can embed 
 ⚡CyberEmbed supports:
 * Github <img src="/home/xuanzitao/work/CyberEmbed/public/img/resources/github_logo.png" alt="github" width="30px"/>
 * 知网 <img src="/home/xuanzitao/work/CyberEmbed/public/img/resources/cnki.png" alt="twitter" width="30px"/>
-* Steam <img src="/home/xuanzitao/work/CyberEmbed/public/img/resources/steam.png" alt="steam" width="30px"/>
+* Steam <img src="./public/img/resources/steam.png" alt="steam" width="30px"/>
 
 ## Insight
 

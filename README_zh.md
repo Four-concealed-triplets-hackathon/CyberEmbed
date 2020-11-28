@@ -29,9 +29,9 @@ Hackathon2020@eastchina， Team 四暗刻。
 ⚡CyberEmbed采用了“软件即服务”（SAAS）的理念。你只需要访问我们的网站 ([https://](https://)) 并且键入你要分享的资源的URL，你就可以使用我们强大的工具，获取生成的图片并将其分享给你的朋友！
 
 ⚡CyberEmbed 支持:
-* Github <img src="/home/xuanzitao/work/CyberEmbed/public/img/resources/github_logo.png" alt="github" width="30px"/>
-* 知网 <img src="/home/xuanzitao/work/CyberEmbed/public/img/resources/cnki.png" alt="twitter" width="30px"/>
-* Steam <img src="/home/xuanzitao/work/CyberEmbed/public/img/resources/steam.png" alt="steam" width="30px"/>
+* Github <img src="./public/img/resources/github_logo.png" alt="github" width="30px"/>
+* 知网 <img src="./public/img/resources/cnki.png" alt="twitter" width="30px"/>
+* Steam <img src="./public/img/resources/steam.png" alt="steam" width="30px"/>
 
 # 灵感
 
