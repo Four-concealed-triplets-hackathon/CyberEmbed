@@ -25,16 +25,6 @@ Hackathon2020@eastchina, Team Four Concealed Triplets. A website that can embed 
 
 ## Overview
 
-<p align="center">
-	<br>
-		<img src="./public/img/resources/demo1.png" alt="题图" />
-	<br>
-	<br>
-		<img src="./public/img/resources/demo2.png" alt="题图" />
-	<br>
-<p>
-
-
 ⚡CyberEmbed is a powerful tool which can help you to embed website content into a single image. When you want to share a link with others, you can use this tool to convert a bare link which contains little information to a awesome and beautiful image which contains lots of useful information such as title and brief description of the link you want to share. Of course, the generated image contains a QR code which links to the page you want to share.
 
 ⚡CyberEmbed supports the concept of "software as a service" (SAAS), and you can use our powerful tool by simply visiting our website ([online demo](http://yukiruuku.design/CyberEmbed_Web_exploded/index.jsp)) and entering the URL of the web page you want to share. And then, you can get the generated image and share it with your friends!
