@@ -38,6 +38,10 @@ public class PosterService {
         // add title information
         g.setFont(new Font("Microsoft YaHei", Font.BOLD, 50));
         g.setColor(Color.BLACK);
+
+        if (title.length() > 17) {
+            title = title.substring(0, 17) + "...";
+        }
         g.drawString(title, 40, 203);
 
         // add other information
@@ -178,8 +182,8 @@ public class PosterService {
         g.drawString("最近评论：" + recentComment, 24, 330);
         g.drawString("全部评论：" + allComment, 24, 360);
         g.drawString("热门标签：", 24, 390);
-        g.setColor(new Color(35,60,78));
-        g.fillRect(35, 410, fontMetrics.stringWidth(firstTag)+22, 50);
+        g.setColor(new Color(35, 60, 78));
+        g.fillRect(35, 410, fontMetrics.stringWidth(firstTag) + 22, 50);
         g.setColor(new Color(101, 192, 241));
         g.drawString(firstTag, 46, 440);
         //326 348
