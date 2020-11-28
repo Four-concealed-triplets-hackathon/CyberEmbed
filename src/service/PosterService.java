@@ -21,7 +21,7 @@ public class PosterService {
      * generate poster for Github repository
      */
     public static BufferedImage generateGithubPoster(String url, String title, String author, String desc, String star, String fork) throws IOException {
-        BufferedImage embed = new BufferedImage(600, 800, BufferedImage.TYPE_INT_RGB);
+        BufferedImage embed = new BufferedImage(600, 600, BufferedImage.TYPE_INT_RGB);
         Graphics2D g = embed.createGraphics();
 
         g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -29,17 +29,17 @@ public class PosterService {
 
         // fill background
         BufferedImage bg = ImageIO.read(new File("./public/img/resources/embed_github_bg.png"));
-        g.drawImage(bg.getScaledInstance(bg.getWidth(), bg.getHeight(), Image.SCALE_SMOOTH), 0, 0, 600, 800, null);
+        g.drawImage(bg.getScaledInstance(bg.getWidth(), bg.getHeight(), Image.SCALE_SMOOTH), 0, 0, 600, 600, null);
 
         // add author information
-        g.setFont(new Font("Microsoft YaHei", Font.PLAIN, 20));
+        g.setFont(new Font("Microsoft YaHei", Font.PLAIN, 25));
         g.setColor(Color.BLACK);
         g.drawString(author, 40, 133);
 
         // add title information
-        g.setFont(new Font("Microsoft YaHei", Font.BOLD, 40));
+        g.setFont(new Font("Microsoft YaHei", Font.BOLD, 50));
         g.setColor(Color.BLACK);
-        g.drawString(title, 40, 200);
+        g.drawString(title, 40, 203);
 
         // add other information
         g.setFont(new Font("Microsoft YaHei", Font.PLAIN, 20));
@@ -66,18 +66,30 @@ public class PosterService {
             descriptions.set(descriptions.size() - 1, lastStr.substring(0, lastStr.length() - 2) + "...");
         }
 
-        g.drawString("About: ", 40, 270);
+        g.setFont(new Font("Microsoft YaHei", Font.BOLD, 20));
+        g.setColor(Color.BLACK);
+        g.drawString("About", 40, 250);
+        g.setFont(new Font("Microsoft YaHei", Font.PLAIN, 20));
         for (int i = 0; i < descriptions.size(); i++) {
             String s = descriptions.get(i);
-            g.drawString(descriptions.get(i), 40, 300 + (i * 30));
+            g.drawString(descriptions.get(i), 40, 280 + (i * 27));
         }
 
-        g.drawString("stars: " + star, 40, 700);
-        g.drawString("forks: " + fork, 200, 700);
+        BufferedImage starIcon = ImageIO.read(new File("./public/img/resources/star.png"));
+        g.drawImage(starIcon.getScaledInstance(starIcon.getWidth(), starIcon.getHeight(), Image.SCALE_SMOOTH), 40, 425, 30, 30, null);
+        g.drawString("Stars  " + star, 75, 447);
+        BufferedImage forkIcon = ImageIO.read(new File("./public/img/resources/fork.png"));
+        g.drawImage(forkIcon.getScaledInstance(forkIcon.getWidth(), forkIcon.getHeight(), Image.SCALE_SMOOTH), 40, 455, 30, 30, null);
+        g.drawString("Forks  " + fork, 75, 477);
+
+        g.setFont(new Font("Microsoft YaHei", Font.ITALIC, 15));
+        g.setColor(Color.GRAY);
+        g.drawString("github.com", 40, 545);
+        g.drawString("© 2020 CyberEmbed, Inc. All Rights Preserved", 40, 575);
 
         // create qr code
         BufferedImage qrCode = createQrCode(url, 300, 300, "./public/img/resources/github_logo.png");
-        g.drawImage(qrCode.getScaledInstance(qrCode.getWidth(), qrCode.getHeight(), Image.SCALE_SMOOTH), 430, 630, 140, 140, null);
+        g.drawImage(qrCode.getScaledInstance(qrCode.getWidth(), qrCode.getHeight(), Image.SCALE_SMOOTH), 425, 425, 150, 150, null);
 
         // release resource
         g.dispose();
