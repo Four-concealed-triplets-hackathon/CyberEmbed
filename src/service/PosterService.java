@@ -148,7 +148,7 @@ public class PosterService {
         return embed;
     }
 
-    private static BufferedImage generateSteamPoster(String url, String headerUrl, String description, String recentComment, String allComment, String firstTag) throws IOException {
+    public static BufferedImage generateSteamPoster(String url, String headerUrl, String description, String recentComment, String allComment, String firstTag) throws IOException {
         BufferedImage embed = new BufferedImage(460, 501, BufferedImage.TYPE_INT_RGB);
         Graphics2D g = embed.createGraphics();
 
@@ -178,11 +178,13 @@ public class PosterService {
         g.drawString("最近评论：" + recentComment, 24, 330);
         g.drawString("全部评论：" + allComment, 24, 360);
         g.drawString("热门标签：", 24, 390);
+        g.setColor(new Color(35,60,78));
+        g.fillRect(35, 410, fontMetrics.stringWidth(firstTag)+22, 50);
         g.setColor(new Color(101, 192, 241));
         g.drawString(firstTag, 46, 440);
         //326 348
         BufferedImage qrCode = createQrCode(url, 400, 400, "./public/img/resources/steam_logo.png");
-        g.drawImage(qrCode.getScaledInstance(qrCode.getWidth(), qrCode.getHeight(), Image.SCALE_SMOOTH), 326, 348, 120, 120, null);
+        g.drawImage(qrCode.getScaledInstance(qrCode.getWidth(), qrCode.getHeight(), Image.SCALE_SMOOTH), 340, 385, 100, 100, null);
         g.dispose();
         return embed;
     }
