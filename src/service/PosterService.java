@@ -19,29 +19,29 @@ public class PosterService {
      * generate poster for Github repository
      */
     public static BufferedImage generateGithubPoster(String url, String title, String author, String desc, String star, String fork) throws IOException {
-        BufferedImage embed = new BufferedImage(1000, 600, BufferedImage.TYPE_INT_RGB);
+        BufferedImage embed = new BufferedImage(600, 800, BufferedImage.TYPE_INT_RGB);
         Graphics2D g = embed.createGraphics();
 
         g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 
-//        // fill background
-//        BufferedImage bg = ImageIO.read(new File("./public/img/git_bg.jpg"));
-//        g.drawImage(bg.getScaledInstance(bg.getWidth(), bg.getHeight(), Image.SCALE_SMOOTH), 0, 0, 1000, 600, null);
+        // fill background
+        BufferedImage bg = ImageIO.read(new File("./public/img/resources/embel_github_bg.png"));
+        g.drawImage(bg.getScaledInstance(bg.getWidth(), bg.getHeight(), Image.SCALE_SMOOTH), 0, 0, 600, 800, null);
+
+        // add author information
+        g.setFont(new Font("Microsoft YaHei", Font.PLAIN, 20));
         g.setColor(Color.BLACK);
-        g.fillRect(0, 0, 1000, 600);
+        g.drawString(author, 40, 133);
 
         // add title information
         g.setFont(new Font("Microsoft YaHei", Font.BOLD, 40));
-        g.setColor(new Color(255, 255, 255));
-        g.drawString(title, 60, 80);
+        g.setColor(Color.BLACK);
+        g.drawString(title, 40, 200);
 
         // add other information
-        g.setFont(new Font("Microsoft YaHei", Font.PLAIN, 30));
-        g.setColor(new Color(255, 255, 255));
-
-        g.drawString("Authors: ", 60, 180);
-        g.drawString(author, 90, 210);
+        g.setFont(new Font("Microsoft YaHei", Font.PLAIN, 20));
+        g.setColor(Color.BLACK);
 
         FontMetrics fontMetrics = g.getFontMetrics();
         ArrayList<String> descriptions = new ArrayList<>();
@@ -64,18 +64,18 @@ public class PosterService {
             descriptions.set(descriptions.size() - 1, lastStr.substring(0, lastStr.length() - 2) + "...");
         }
 
-        g.drawString("Description: ", 60, 240);
+        g.drawString("About: ", 40, 270);
         for (int i = 0; i < descriptions.size(); i++) {
             String s = descriptions.get(i);
-            g.drawString(descriptions.get(i), 90, 270 + (i * 30));
+            g.drawString(descriptions.get(i), 40, 300 + (i * 30));
         }
 
-        g.drawString("stars: " + star, 60, 500);
-        g.drawString("forks: " + fork, 240, 500);
+        g.drawString("stars: " + star, 40, 700);
+        g.drawString("forks: " + fork, 200, 700);
 
         // create qr code
-        BufferedImage qrCode = createQrCode(url, 300, 300, "./public/img/github_logo.png");
-        g.drawImage(qrCode.getScaledInstance(qrCode.getWidth(), qrCode.getHeight(), Image.SCALE_SMOOTH), 750, 40, 200, 200, null);
+        BufferedImage qrCode = createQrCode(url, 300, 300, "./public/img/resources/github_logo.png");
+        g.drawImage(qrCode.getScaledInstance(qrCode.getWidth(), qrCode.getHeight(), Image.SCALE_SMOOTH), 430, 630, 140, 140, null);
 
         // release resource
         g.dispose();
@@ -162,11 +162,11 @@ public class PosterService {
             BitMatrix bitMatrix = new MultiFormatWriter().encode(url, BarcodeFormat.QR_CODE, width, height, hints);
             BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 
-//            Image logo = ImageIO.read(new File(logoPath));
-//            int logoWidth = Math.min(logo.getWidth(null), image.getWidth() * 2 / 10);
-//            int logoHeight = Math.min(logo.getHeight(null), image.getHeight() * 2 / 10);
-//            int logoX = (image.getWidth() - logoWidth) / 2;
-//            int logoY = (image.getHeight() - logoHeight) / 2;
+            Image logo = ImageIO.read(new File(logoPath));
+            int logoWidth = Math.min(logo.getWidth(null), image.getWidth() * 2 / 10);
+            int logoHeight = Math.min(logo.getHeight(null), image.getHeight() * 2 / 10);
+            int logoX = (image.getWidth() - logoWidth) / 2;
+            int logoY = (image.getHeight() - logoHeight) / 2;
 
             for (int x = 0; x < width; x++) {
                 for (int y = 0; y < height; y++) {
@@ -177,11 +177,11 @@ public class PosterService {
             Graphics2D graphics = image.createGraphics();
             graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-//            graphics.drawImage(logo, logoX, logoY, logoWidth, logoHeight, null);
-//
-//            graphics.setStroke(new BasicStroke(5));
-//            graphics.setColor(Color.WHITE);
-//            graphics.drawRect(logoX, logoY, logoWidth, logoHeight);
+            graphics.drawImage(logo, logoX, logoY, logoWidth, logoHeight, null);
+
+            graphics.setStroke(new BasicStroke(5));
+            graphics.setColor(Color.WHITE);
+            graphics.drawRect(logoX, logoY, logoWidth, logoHeight);
 
             graphics.dispose();
 
@@ -201,12 +201,12 @@ public class PosterService {
 
         try {
             BufferedImage poster = generateGithubPoster(
-                    "https://github.com/CappuccinoCup/MyChair",
-                    "MyChair",
-                    "CappuccinoCup",
-                    "vue-cli3 front end for 2020 SE, more words needed more words needed more words needed more words needed more words needed more words needed more words needed more words needed more words needed more words needed...",
-                    "0",
-                    "0"
+                    "https://github.com/zxing/zxing",
+                    "zxing",
+                    "zxing",
+                    "ZXing (\"Zebra Crossing\") barcode scanning library for Java, Android",
+                    "26.7k",
+                    "8.8k"
             );
             ImageIO.write(poster, "jpg", new File(outputPath));
         } catch (IOException e) {
