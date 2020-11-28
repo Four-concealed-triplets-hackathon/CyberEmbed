@@ -314,7 +314,6 @@
                         } else {
                             $('#modal-content').html("<img id=\"output\" src=\"" + data["data"][1]["url"] + "\"\\>")
                             $('#button-container').append(downloadButton)
-                            //
                         }
                     }
                 }

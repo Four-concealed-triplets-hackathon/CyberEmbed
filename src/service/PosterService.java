@@ -209,11 +209,14 @@ public class PosterService {
         g.drawString("最近评论："+recentComment,24,330);
         g.drawString("全部评论："+allComment,24,360);
         g.drawString("热门标签：",24,390);
+        g.setColor(new Color(35,60,78));
+        g.fillRect(35, 410, fontMetrics.stringWidth(firstTag)+22, 50);
         g.setColor(new Color(101, 192, 241));
         g.drawString(firstTag,46,440);
+
         //326 348
         BufferedImage qrCode = createQrCode(url, 400, 400, "./public/img/resources/steam_logo.png");
-        g.drawImage(qrCode.getScaledInstance(qrCode.getWidth(), qrCode.getHeight(), Image.SCALE_SMOOTH), 326, 348, 120, 120, null);
+        g.drawImage(qrCode.getScaledInstance(qrCode.getWidth(), qrCode.getHeight(), Image.SCALE_SMOOTH), 326, 380, 80, 80, null);
         g.dispose();
         return embed;
     }
@@ -285,5 +288,18 @@ public class PosterService {
      * an easy poster demo
      */
     public static void main(String[] args) {
+        String path = "./public/embed.jpg";
+        try{
+            BufferedImage b = generateSteamPoster("https://store.steampowered.com/app/1145360/Hades/",
+                    "https://media.st.dl.pinyuncloud.com/steam/apps/1145360/header.jpg?t=1606329416",
+                    "Defy the god of the dead as you hack and slash out of the Underworld in this rogue-like dungeon crawler from the creators of Bastion, Transistor, and Pyre.",
+                    "壓倒性好評 (29,615)" ,"壓倒性好評 (75,035)",
+                    "roguelike探险游戏"
+                    )
+                    ;
+            ImageIO.write(b,"jpg", new File(path));
+        }catch (IOException e){
+
+        }
     }
 }
