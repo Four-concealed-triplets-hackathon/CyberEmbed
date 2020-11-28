@@ -280,8 +280,8 @@
         "<div class=\"rect4\"></div>\n" + "<div class=\"rect5\"></div>\n" + "</div>"
     let downloadButton = "<button onclick=\"download()\" class=\"remodal-confirm\">Download</button>"
     let cancelButton = "<button data-remodal-action=\"cancel\" class=\"remodal-cancel\">Cancel</button>"
-    let errorcode = "\"<p>❌ url parse failed ❌<br>We haven't supported the website \" +\n" +
-        "                \"<br>or something goes wrong with the url</p>\""
+    let errorcode = "<p>❌ url parse failed ❌<br>We haven't supported the website" +
+        "<br>or something goes wrong with the url</p>"
     window.REMODAL_GLOBALS = {
         NAMESPACE: 'modal',
         DEFAULTS: {
