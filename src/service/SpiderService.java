@@ -8,6 +8,9 @@ import org.jsoup.select.Elements;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
 
 public class SpiderService {
     public static String getEmbed(String url) {
@@ -54,8 +57,12 @@ public class SpiderService {
                 return "/CyberEmbed_Web_exploded/public/img/cnki/"+name+".jpg";
             }
             //twitter url
-            else if(url.contains("twitter.com")){
-                int a = 1;
+            else if(url.contains("store.steampowered.com")){
+                String title = document.select("[class=apphub_AppName]").text();
+                String header_photo = document.select("[class=game_header_image_full]").attr("src");
+                Elements info = document.select("[class=summary column]");
+                String recentReview = info.get(0).text();
+                String allReview = info.get(1).text();
             }
         } catch (Exception e) {
             return new String("parse url error");
@@ -65,8 +72,9 @@ public class SpiderService {
 
     public static void main(String[] args) {
 //        getEmbed("https://github.com/cilebritain/PRML-Spring20-FDU");
-        getEmbed("https://kns.cnki.net/KCMS/detail/33.1151.s.20201120.0950.002.html");
+//        getEmbed("https://kns.cnki.net/KCMS/detail/33.1151.s.20201120.0950.002.html");
 //        getEmbed("https://kns.cnki.net/KCMS/detail/11.3536.F.20201120.1432.020.html");
 //        testImage();
+        getEmbed("https://store.steampowered.com/app/1217060/_/");
     }
 }

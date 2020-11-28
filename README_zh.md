@@ -16,17 +16,17 @@ Hackathon2020@eastchina， Team 四暗刻。
 
 # 目录
 
+- [目录](#目录)
 - [概述](#概述)
 - [灵感](#灵感)
 - [快速开始](#快速开始)
-- [Contributing](CONTRIBUTING.md)
 - [License](#license)
 
 # 概述
 
 ⚡CyberEmbed是一个可以将网站的主要内容嵌入一张图片的实用工具。当你想向你的朋友分享某个资源（比如Github的仓库）时，你可以使用此工具将资源的链接（仅仅包含非常有限的信息）转为一个令人赏心悦目的图片（包含资源中的主要信息）。当然，生成的图片中还包含着链接向你要分享的资源的二维码。
 
-⚡CyberEmbed采用了“软件即服务”（SAAS）的理念。你只需要访问我们的网站 ([https://](https://)) 并且键入你要分享的资源的URL，你就可以使用我们强大的工具，获取生成的图片并将其分享给你的朋友！
+⚡CyberEmbed采用了“软件即服务”（SAAS）的理念。你只需要访问我们的网站 ([在线演示](http://yukiruuku.design/CyberEmbed_Web_exploded/index.jsp)) 并且键入你要分享的资源的URL，你就可以使用我们强大的工具，获取生成的图片并将其分享给你的朋友！
 
 ⚡CyberEmbed 支持:
 * Github <img src="./public/img/resources/github_logo.png" alt="github" width="30px"/>
@@ -43,7 +43,7 @@ Hackathon2020@eastchina， Team 四暗刻。
 
 # 快速开始
 
-1. 访问我们的网站 ([https://](https://))
+1. 访问我们的网站 ([https://yukiruuku.design/CyberEmbed_Web_exploded/index.jsp](http://yukiruuku.design/CyberEmbed_Web_exploded/index.jsp))
 2. 键入资源的链接（URL）
 3. 预览生成的图片并下载图片
 
