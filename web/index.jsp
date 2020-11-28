@@ -197,8 +197,7 @@
                     // contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
                     traditional: true,
                     success: function (data) {
-                        console.log(data["url"])
-                        $('#modal-content').html("<img id=\"output\" src=\""+data["url"]+"\"\\>")
+                        $('#modal-content').html("<img id=\"output\" src=\""+data["data"][1]["url"]+"\"\\>")
                         $('#button-container').append(downloadButton)
                         //
                     }

@@ -5,8 +5,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CyberServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
@@ -33,6 +36,13 @@ public class CyberServlet extends HttpServlet {
 
     private void generatePic(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String url = request.getParameter("url");
-
+        String retUrl = SpiderService.getEmbed(url);
+        String json = "{\"data\":[";
+        json += "{\"code\":\"200\"},";
+        json += "{\"url\":\""+retUrl+"\"";
+        json += "},";
+        json = json.substring(0, json.length()-1);
+        json += "]}";
+        response.getWriter().write(json);
     }
 }

@@ -10,9 +10,10 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 
 public class SpiderService {
-    public static BufferedImage getEmbed(String url) {
+    public static String getEmbed(String url) {
         try {
             Document document = Jsoup.connect(url).get();
+
             // github url
             if (url.contains("github.com")) {
                 String author = document.select("[itemprop=author]").text();
@@ -20,15 +21,11 @@ public class SpiderService {
                 String desc = document.getElementsMatchingOwnText("About").get(0).nextElementSibling().text();
                 String stars = document.getElementsByAttributeValueContaining("aria-label", "starred this repository").text();
                 String forks = document.getElementsByAttributeValueContaining("aria-label", "forked this repository").text();
-                System.out.println(author);
-                System.out.println(title);
-                System.out.println(desc);
-                System.out.println(stars);
-                System.out.println(forks);
                 BufferedImage image = PosterService.generateGithubPoster(url, title, author, desc, stars, forks);
-                String outputPath = "./public/img/poster.jpg";
+                String name = author + title;
+                String outputPath = "../webapps/CyberEmbed_Web_exploded/public/img/"+name+".jpg";
                 ImageIO.write(image, "jpg", new File(outputPath));
-                return image;
+                return "/CyberEmbed_Web_exploded/public/img/"+name+".jpg";
             }
         } catch (Exception e) {
             System.out.println("get html content error");

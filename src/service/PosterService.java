@@ -90,11 +90,11 @@ public class PosterService {
             BitMatrix bitMatrix = new MultiFormatWriter().encode(url, BarcodeFormat.QR_CODE, width, height, hints);
             BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 
-            Image logo = ImageIO.read(new File(logoPath));
-            int logoWidth = Math.min(logo.getWidth(null), image.getWidth() * 2 / 10);
-            int logoHeight = Math.min(logo.getHeight(null), image.getHeight() * 2 / 10);
-            int logoX = (image.getWidth() - logoWidth) / 2;
-            int logoY = (image.getHeight() - logoHeight) / 2;
+//            Image logo = ImageIO.read(new File(logoPath));
+//            int logoWidth = Math.min(logo.getWidth(null), image.getWidth() * 2 / 10);
+//            int logoHeight = Math.min(logo.getHeight(null), image.getHeight() * 2 / 10);
+//            int logoX = (image.getWidth() - logoWidth) / 2;
+//            int logoY = (image.getHeight() - logoHeight) / 2;
 
             for (int x = 0; x < width; x++) {
                 for (int y = 0; y < height; y++) {
@@ -102,16 +102,16 @@ public class PosterService {
                 }
             }
 
-            Graphics2D graphics = image.createGraphics();
-            graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-
-            graphics.drawImage(logo, logoX, logoY, logoWidth, logoHeight, null);
-
-            graphics.setStroke(new BasicStroke(5));
-            graphics.setColor(Color.WHITE);
-            graphics.drawRect(logoX, logoY, logoWidth, logoHeight);
-
-            graphics.dispose();
+//            Graphics2D graphics = image.createGraphics();
+//            graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+//
+//            graphics.drawImage(logo, logoX, logoY, logoWidth, logoHeight, null);
+//
+//            graphics.setStroke(new BasicStroke(5));
+//            graphics.setColor(Color.WHITE);
+//            graphics.drawRect(logoX, logoY, logoWidth, logoHeight);
+//
+//            graphics.dispose();
 
             return image;
         } catch (Exception e) {
