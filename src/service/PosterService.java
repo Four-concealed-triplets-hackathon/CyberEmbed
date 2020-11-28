@@ -3,8 +3,10 @@ package service;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -160,7 +162,7 @@ public class PosterService {
         BufferedImage bg = ImageIO.read(new File("./public/img/resources/embed_steam_bg.png"));
         g.drawImage(bg.getScaledInstance(bg.getWidth(), bg.getHeight(), Image.SCALE_SMOOTH), 0, 0, 460, 501, null);
         //绘制头图
-        BufferedImage header = ImageIO.read(new File(headerUrl));;
+        BufferedImage header = ImageIO.read(new ByteArrayInputStream(readOnlineImage(headerUrl)));
         g.drawImage(header.getScaledInstance(header.getWidth(), header.getHeight(), Image.SCALE_SMOOTH), 0, 0, 460 , 215, null);
 
         g.setFont(new Font("Microsoft YaHei", Font.PLAIN, 17));
@@ -245,6 +247,27 @@ public class PosterService {
         }
         return null;
     }
+    
+    public static byte[] readOnlineImage(String s) throws IOException {
+        URL url = new URL(s);
+        HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+        conn.setRequestMethod("GET");
+        conn.setConnectTimeout(5 * 1000);
+        InputStream inStream = conn.getInputStream();
+        byte[] data = readInputStream(inStream);
+        return data;
+    }
+
+    private static byte[] readInputStream(InputStream inStream) throws IOException {
+        ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+        byte[] buffer = new byte[1024];
+        int len = 0;
+        while( (len=inStream.read(buffer)) != -1 ){
+            outStream.write(buffer, 0, len);
+        }
+        inStream.close();
+        return outStream.toByteArray();
+    }
 
     /**
      * an easy poster demo
@@ -264,7 +287,7 @@ public class PosterService {
 //            );
 //            ImageIO.write(poster, "jpg", new File(outputPath));
             BufferedImage poster = generateSteamPoster("https://store.steampowered.com/app/1145360/Hades/"
-            ,"","Defy the god of the dead as you hack and slash out of the \n" +
+            ,"https://media.st.dl.pinyuncloud.com/steam/apps/1145360/header.jpg?t=1606329416","Defy the god of the dead as you hack and slash out of the \n" +
                             "Underworld in this rogue-like dungeon crawler from the \n" +
                             "creators of Bastion, Transistor, and Pyre.",
                     "压倒性好评","压倒性好评",
