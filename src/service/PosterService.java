@@ -273,29 +273,5 @@ public class PosterService {
      * an easy poster demo
      */
     public static void main(String[] args) {
-
-        String outputPath = "./public/img/embed.jpg";
-
-        try {
-//            BufferedImage poster = generateGithubPoster(
-//                    "https://github.com/zxing/zxing",
-//                    "zxing",
-//                    "zxing",
-//                    "ZXing (\"Zebra Crossing\") barcode scanning library for Java, Android",
-//                    "26.7k",
-//                    "8.8k"
-//            );
-//            ImageIO.write(poster, "jpg", new File(outputPath));
-            BufferedImage poster = generateSteamPoster("https://store.steampowered.com/app/1145360/Hades/"
-            ,"https://media.st.dl.pinyuncloud.com/steam/apps/1145360/header.jpg?t=1606329416","Defy the god of the dead as you hack and slash out of the \n" +
-                            "Underworld in this rogue-like dungeon crawler from the \n" +
-                            "creators of Bastion, Transistor, and Pyre.",
-                    "压倒性好评","压倒性好评",
-                    "RogueLike探险"
-            );
-            ImageIO.write(poster,"jpg",new File(outputPath));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }
