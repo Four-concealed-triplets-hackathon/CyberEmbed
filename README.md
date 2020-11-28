@@ -21,6 +21,7 @@ Hackathon2020@eastchina, Team Four Concealed Triplets. A website that can embed 
 - [Overview](#overview)
 - [Insight](#insight)
 - [Getting Started](#getting-started)
+- [Demo examples](#demo-examples)
 - [License](#license)
 
 ## Overview
@@ -47,6 +48,20 @@ To solve this problem and improve efficiency, we decide to develop CyberEmbed. W
 1. Visiting our website ([https://yukiruuku.design/CyberEmbed_Web_exploded/index.jsp](http://yukiruuku.design/CyberEmbed_Web_exploded/index.jsp))
 2. Entering the URL of the website you want to embed into an image
 3. Previewing the image and download it
+
+## Demo examples
+
+<p align="center">
+	<br>
+		<img src="./public/img/resources/github.jpg" alt="github example" width=40%/>
+	<br>
+	<br>
+		<img src="./public/img/resources/cnki.jpg" alt="cnki example"  width=40%/>
+	<br>
+	<br>
+		<img src="./public/img/resources/steam.jpg" alt="steam example"  width=40%/>
+	<br>
+<p>
 
 ## License
 
