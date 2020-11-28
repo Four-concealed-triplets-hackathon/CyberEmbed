@@ -216,7 +216,7 @@ public class PosterService {
 
         //326 348
         BufferedImage qrCode = createQrCode(url, 400, 400, "./public/img/resources/steam_logo.png");
-        g.drawImage(qrCode.getScaledInstance(qrCode.getWidth(), qrCode.getHeight(), Image.SCALE_SMOOTH), 326, 380, 80, 80, null);
+        g.drawImage(qrCode.getScaledInstance(qrCode.getWidth(), qrCode.getHeight(), Image.SCALE_SMOOTH), 340, 385, 100, 100, null);
         g.dispose();
         return embed;
     }
