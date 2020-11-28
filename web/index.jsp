@@ -179,7 +179,7 @@
     let inst = $('[data-remodal-id=modal]').remodal();
 
     function request() {
-        let a = document.getElementsByClassName("search-txt")[0];
+        let a = document.getElementsByClassName("search-txt")[0].value;
         if (a !== "" && a != null) {
             $('#button-container').html(cancelButton)
             $('#modal-content').html(waiting)
