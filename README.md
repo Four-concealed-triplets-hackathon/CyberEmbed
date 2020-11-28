@@ -5,7 +5,7 @@
 <p>
 <p align="center">
 	<a href="https://github.com/Four-concealed-triplets-hackathon/CyberEmbed/blob/main/LICENSE">
-		<img alt="GitHub" src="https://img.shields.io/github/license/huggingface/transformers.svg?color=blue"
+		<img alt="GitHub" src="https://img.shields.io/github/license/huggingface/transformers.svg?color=blue">
 	</a>
 <p>
 
@@ -28,8 +28,8 @@ Hackathon2020@eastchina, Team Four Concealed Triplets. A website that can embed 
 ⚡CyberEmbed supports the concept of "software as a service" (SAAS), and you can use our powerful tool by simply visiting our website ([https://](https://)) and entering the URL of the web page you want to share. And then, you can get the generated image and share it with your friends!
 
 ⚡CyberEmbed supports:
-* Github <img src="/home/xuanzitao/work/CyberEmbed/public/img/resources/github_logo.png" alt="github" width="30px"/>
-* 知网 <img src="/home/xuanzitao/work/CyberEmbed/public/img/resources/cnki.png" alt="twitter" width="30px"/>
+* Github <img src="./public/img/resources/github_logo.png" alt="github" width="30px"/>
+* 知网 <img src="./public/img/resources/cnki.png" alt="twitter" width="30px"/>
 * Steam <img src="./public/img/resources/steam.png" alt="steam" width="30px"/>
 
 ## Insight

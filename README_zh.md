@@ -6,7 +6,7 @@
 
 <p align="center">
 	<a href="https://github.com/Four-concealed-triplets-hackathon/CyberEmbed/blob/main/LICENSE">
-		<img alt="GitHub" src="https://img.shields.io/github/license/huggingface/transformers.svg?color=blue"
+		<img alt="GitHub" src="https://img.shields.io/github/license/huggingface/transformers.svg?color=blue">
 	</a>
 <p>
 
