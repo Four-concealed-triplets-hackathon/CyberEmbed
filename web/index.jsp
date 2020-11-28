@@ -8,8 +8,11 @@
 <html>
 <head>
     <title>Cyber Embed</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0">
     <link href="https://cdn.bootcss.com/font-awesome/5.8.0/css/all.css" rel="stylesheet"/>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="css/remodal.css">
     <link rel="stylesheet" href="css/remodal-default-theme.css">
     <link rel="stylesheet" href="css/background.css">
@@ -19,28 +22,59 @@
             padding: 0;
             /*background: #000;*/
         }
+        /*相应式布局*/
 
-        #output{
-            width:40%;
-            height:40%;
+        html { font-size:20px; }
+        @media(max-width:540px){ html { font-size:18px; } } /*Android常用宽度*/
+        @media(max-width:480px){ html { font-size:18px; } }		/*Android常用宽度*/
+        @media(max-width:414px){ html { font-size:15px; } }  /*i6Plus,i7Plus宽度*/
+        @media(max-width:375px){ html { font-size:14px; } }	/*i6,i7宽度*/
+        @media(max-width:360px){ html { font-size:14px; } }	/*Android常用宽度*/
+        @media(max-width:320px){ html { font-size:12px; } }		/*i5宽度*/
+
+        /*广泛布局*/
+        .disabled {
+            display: none;
+        }
+
+        #output {
+            width: 70%;
+        }
+
+        #title-container {
+            color: white;
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #description-container {
+            color: white;
+            position: absolute;
+            top: 70%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
 
         .search-box {
-            position: absolute;
+            position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             background: #FFFFFF;
-            height: 40px;
-            border-radius: 40px;
-            padding: 10px;
+            /*height: 2rem;*/
+            border-radius: 2.5rem;
+            padding: 0.5rem;
+            font-size:0.7rem;
+            display: flex;
         }
 
         .search-btn {
             color: #000;
-            float: right;
-            width: 40px;
-            height: 40px;
+            /*float: right;*/
+            width: 2.5rem;
+            height: 2.5rem;
             border-radius: 50%;
             background: #FFFFFF;
             display: flex;
@@ -58,17 +92,19 @@
             float: left;
             padding: 0;
             color: #000;
-            font-size: 16px;
+            display:flex;
+            font-size: 0.8rem;
             transition: 0.4s;
-            line-height: 40px;
+            line-height: 2.5rem;
             width: 0;
         }
 
         .search-box:hover > .search-txt {
-            width: 240px;
+            width: 18rem;
             /*width: 40%;*/
-            padding: 0 6px;
+            padding: 0 0.7rem;
         }
+
 
         .search-box:hover > .search-btn {
             background: #000;
@@ -89,7 +125,6 @@
             height: 100%;
             width: 6px;
             display: inline-block;
-
             -webkit-animation: stretchdelay 1.2s infinite ease-in-out;
             animation: stretchdelay 1.2s infinite ease-in-out;
         }
@@ -140,22 +175,32 @@
     </style>
 </head>
 <body>
+<%--<div id="main">--%>
 <%--action="/CyberEmbed/cyber/generatePic"--%>
-<form id="form">
-    <div class="search-box">
-        <input class="search-txt" type="text" placeholder="Type to Create Poster"/>
-        <a class="search-btn" onclick="request()">
-            <i class="fas fa-search"></i>
-        </a>
+<%--<form>--%>
+<div id="search-box" class="search-box">
+    <input class="search-txt" type="text" placeholder="Type to Embed"/>
+    <a class="search-btn" onclick="request()">
+        <i class="fa fa-bolt" aria-hidden="true"></i>
+    </a>
+</div>
+<%--</form>--%>
+
+<div class="container" id="main">
+    <div id="title-container">
+        <h1 id="title" class="animated fadeInDown">CyberEmbed</h1>
     </div>
-</form>
+    <div id="description-container">
+        <p id="description" class="disabled">a great poster solution to message contact.</p>
+    </div>
+</div>
+<%--</div>--%>
 <%-- 模态窗口 --%>
 <%--<a href="#modal">Call the modal with data-remodal-id="modal"</a>--%>
 <div class="remodal" data-remodal-id="modal">
     <button data-remodal-action="close" class="remodal-close"></button>
     <h1>Your Poster</h1>
     <div id="modal-content">
-
     </div>
     <br>
     <br>
@@ -165,8 +210,29 @@
     </div>
 </div>
 <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
 <script src="js/remodal.js"></script>
 <script>
+    $("#search-box").mouseover(
+        function () {
+            $("#title").attr("class", "animated fadeOutUp");
+            $("#description").attr("class", "animated fadeInUp");
+        }
+    );
+
+    $("#search-box").mouseleave(
+        function () {
+            $("#title").attr("class", "animated fadeInDown");
+            $("#description").attr("class", "animated fadeOutDown");
+        }
+    );
+
+
     let waiting = "<div class=\"spinner\" id=\"waiting-for-pic\">\n" +
         "<div class=\"rect1\"></div>\n" + "<div class=\"rect2\"></div>\n" + "<div class=\"rect3\"></div>\n" +
         "<div class=\"rect4\"></div>\n" + "<div class=\"rect5\"></div>\n" + "</div>"
@@ -197,7 +263,7 @@
                     // contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
                     traditional: true,
                     success: function (data) {
-                        $('#modal-content').html("<img id=\"output\" src=\""+data["data"][1]["url"]+"\"\\>")
+                        $('#modal-content').html("<img id=\"output\" src=\"" + data["data"][1]["url"] + "\"\\>")
                         $('#button-container').append(downloadButton)
                         //
                     }
