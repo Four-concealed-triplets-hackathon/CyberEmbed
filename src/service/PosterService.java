@@ -18,7 +18,8 @@ import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 public class PosterService {
     /**
      * generate poster for Github repository
-     */
+     *
+     * :-)     */
     public static BufferedImage generateGithubPoster(String url, String title, String author, String desc, String star, String fork) throws IOException {
         BufferedImage embed = new BufferedImage(600, 600, BufferedImage.TYPE_INT_RGB);
         Graphics2D g = embed.createGraphics();

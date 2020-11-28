@@ -2,17 +2,12 @@ package service;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
 
 public class SpiderService {
     public static String getEmbed(String url) {
