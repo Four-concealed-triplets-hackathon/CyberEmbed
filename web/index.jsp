@@ -180,8 +180,9 @@
 
     function request() {
         let a = document.getElementsByClassName("search-txt")[0];
-        if (a !== "" || a != null) {
+        if (a !== "" && a != null) {
             $('#button-container').html(cancelButton)
+            $('#modal-content').html(waiting)
             inst.open();
             $.ajax(
                 {
