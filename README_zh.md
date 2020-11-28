@@ -12,7 +12,7 @@
 
 Hackathon2020@eastchina， Team 四暗刻。 
 
-一个可以将网站的主要内容嵌入一张图片的实用工具（支持Github, 知网, 推特和Spotify）。
+一个可以将网站的主要内容嵌入一张图片的实用工具（支持Github, 知网和steam）。
 
 # 目录
 
@@ -29,9 +29,9 @@ Hackathon2020@eastchina， Team 四暗刻。
 ⚡CyberEmbed采用了“软件即服务”（SAAS）的理念。你只需要访问我们的网站 ([https://](https://)) 并且键入你要分享的资源的URL，你就可以使用我们强大的工具，获取生成的图片并将其分享给你的朋友！
 
 ⚡CyberEmbed 支持:
-* Github <img src="/home/xuanzitao/work/CyberEmbed/public/img/resources/github_logo.png" alt="github" style="zoom:18%;" />
-* 知网 <img src="/home/xuanzitao/work/CyberEmbed/public/img/resources/cnki.png" alt="twitter" style="zoom:140%;" />
-* Steam <img src="/home/xuanzitao/work/CyberEmbed/public/img/resources/steam.png" alt="steam" style="zoom:4%;" />
+* Github <img src="/home/xuanzitao/work/CyberEmbed/public/img/resources/github_logo.png" alt="github" width="30px"/>
+* 知网 <img src="/home/xuanzitao/work/CyberEmbed/public/img/resources/cnki.png" alt="twitter" width="30px"/>
+* Steam <img src="/home/xuanzitao/work/CyberEmbed/public/img/resources/steam.png" alt="steam" width="30px"/>
 
 # 灵感
 
