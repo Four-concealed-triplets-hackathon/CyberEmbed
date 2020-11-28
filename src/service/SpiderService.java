@@ -8,7 +8,6 @@ import org.jsoup.select.Elements;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import gui.ava.html.image.generator.HtmlImageGenerator;
 
 public class SpiderService {
     public static String getEmbed(String url) {
@@ -27,6 +26,7 @@ public class SpiderService {
                 ImageIO.write(image, "jpg", new File(outputPath));
                 return "/CyberEmbed_Web_exploded/public/img/github/"+name+".jpg";
             }
+            //cnki url
             else if(url.contains("kns.cnki.net")){
                 String title = document.select("h1").text();
                 Elements authors = document.select("#authorpart").get(0).children();
@@ -41,10 +41,10 @@ public class SpiderService {
                 String pages = "";
                 for(int i=0; i<infos.size(); i++){
                     if(infos.get(i).text().contains("下载：")){
-                        downloads = infos.get(i).text().strip().split("下载：")[0];
+                        downloads = infos.get(i).text().split("下载：")[1];
                     }
                     if(infos.get(i).text().contains("页数：")){
-                        pages = infos.get(i).text().strip().split("页数：")[0];
+                        pages = infos.get(i).text().split("页数：")[1];
                     }
                 }
                 BufferedImage image = PosterService.generateCnkiPoster(url, title, author, abs, topic, downloads, pages);
@@ -52,6 +52,10 @@ public class SpiderService {
                 String outputPath = "./public/img/cnki/"+name+".jpg";
                 ImageIO.write(image, "jpg", new File(outputPath));
                 return "/CyberEmbed_Web_exploded/public/img/cnki/"+name+".jpg";
+            }
+            //twitter url
+            else if(url.contains("twitter.com")){
+                int a = 1;
             }
         } catch (Exception e) {
             return new String("parse url error");
