@@ -12,11 +12,12 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.min.css">
     <link rel="stylesheet" href="css/remodal.css">
     <link rel="stylesheet" href="css/remodal-default-theme.css">
+    <link rel="stylesheet" href="css/background.css">
     <style>
         body {
             margin: 0;
             padding: 0;
-            background: #000;
+            /*background: #000;*/
         }
 
         #output{
@@ -30,16 +31,16 @@
             left: 50%;
             transform: translate(-50%, -50%);
             background: #ffa31a;
-            height: 40px;
-            border-radius: 40px;
+            height:50px;
+            border-radius: 50px;
             padding: 10px;
         }
 
         .search-btn {
             color: #000;
             float: right;
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             background: #ffa31a;
             display: flex;
@@ -64,7 +65,8 @@
         }
 
         .search-box:hover > .search-txt {
-            width: 240px;
+            width: 40%;
+            min-width: 240px;
             padding: 0 6px;
         }
 
@@ -183,6 +185,7 @@
         if (a !== "" && a != null) {
             $('#button-container').html(cancelButton)
             $('#modal-content').html(waiting)
+            // $('#modal-content').html("<img id=\"output\" src=\"/public/img/33.jpg\"\\>")
             inst.open();
             $.ajax(
                 {
@@ -195,9 +198,9 @@
                     contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
                     traditional: true,
                     success: function (data) {
-                        $('#modal-content').html("<img id=\"output\" src=\""+data.url+"\"\\>")
+                        console.log("success in get img")
+                        $('#modal-content').html("<img id=\"output\" src=\""+data["url"]+"\"\\>")
                         $('#button-container').append(downloadButton)
-                        //
                     }
                 }
             )
