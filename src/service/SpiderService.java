@@ -60,14 +60,23 @@ public class SpiderService {
             else if(url.contains("store.steampowered.com")){
                 String title = document.select("[class=apphub_AppName]").text();
                 String header_photo = document.select("[class=game_header_image_full]").attr("src");
+                String desc = document.select("[class=game_description_snippet]").text();
                 Elements info = document.select("[class=summary column]");
-                String recentReview = info.get(0).text();
-                String allReview = info.get(1).text();
+                String recentReview = info.get(0).children().get(0).text() + info.get(0).children().get(1).text();
+                String allReview = info.get(1).children().get(0).text() + info.get(1).children().get(1).text();
+                String tag = document.select("[class=glance_tags popular_tags]").get(0).children().get(0).text();
+                BufferedImage image = PosterService.generateSteamPoster(url, header_photo, desc, recentReview, allReview, tag);
+                String name = title;
+                String outputPath = "./public/img/steam/"+name+".jpg";
+                ImageIO.write(image, "jpg", new File(outputPath));
+                return "/CyberEmbed_Web_exploded/public/img/steam/"+name+".jpg";
+            }
+            else {
+                return new String("parse url error");
             }
         } catch (Exception e) {
             return new String("parse url error");
         }
-        return null;
     }
 
     public static void main(String[] args) {
@@ -75,6 +84,7 @@ public class SpiderService {
 //        getEmbed("https://kns.cnki.net/KCMS/detail/33.1151.s.20201120.0950.002.html");
 //        getEmbed("https://kns.cnki.net/KCMS/detail/11.3536.F.20201120.1432.020.html");
 //        testImage();
-        getEmbed("https://store.steampowered.com/app/1217060/_/");
+//        getEmbed("https://store.steampowered.com/app/1217060/_/");
+        getEmbed("https://store.steampowered.com/app/578080/PLAYERUNKNOWNS_BATTLEGROUNDS/");
     }
 }

@@ -164,7 +164,7 @@ public class PosterService {
         return embed;
     }
 
-    private static BufferedImage generateSteamPoster(String url,String headerUrl, String description, String recentComment,String allComment, String firstTag) throws IOException {
+    public static BufferedImage generateSteamPoster(String url,String headerUrl, String description, String recentComment,String allComment, String firstTag) throws IOException {
         BufferedImage embed = new BufferedImage(460, 501, BufferedImage.TYPE_INT_RGB);
         Graphics2D g = embed.createGraphics();
 
