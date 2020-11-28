@@ -221,7 +221,7 @@
 <%--action="/CyberEmbed/cyber/generatePic"--%>
 <%--<form>--%>
 <div id="search-box" class="search-box">
-    <input class="search-txt" type="text" placeholder="Type to Embed"/>
+    <input class="search-txt" type="text" id="search-txt" placeholder="Type to Embed"/>
     <a class="search-btn" onclick="request()">
         <i class="fa fa-bolt" aria-hidden="true"></i>
     </a>
@@ -292,6 +292,7 @@
 
     function request() {
         let a = document.getElementsByClassName("search-txt")[0].value;
+        $("#search-txt").val("");
         if (a !== "" && a != null) {
             $('#button-container').html(cancelButton)
             $('#modal-content').html(waiting)
