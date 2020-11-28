@@ -8,12 +8,12 @@ import org.jsoup.select.Elements;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import gui.ava.html.image.generator.HtmlImageGenerator;
 
 public class SpiderService {
     public static String getEmbed(String url) {
         try {
             Document document = Jsoup.connect(url).get();
-
             // github url
             if (url.contains("github.com")) {
                 String author = document.select("[itemprop=author]").text();
@@ -23,17 +23,46 @@ public class SpiderService {
                 String forks = document.getElementsByAttributeValueContaining("aria-label", "forked this repository").text();
                 BufferedImage image = PosterService.generateGithubPoster(url, title, author, desc, stars, forks);
                 String name = author + title;
-                String outputPath = "../webapps/CyberEmbed_Web_exploded/public/img/"+name+".jpg";
+                String outputPath = "./public/img/github/"+name+".jpg";
                 ImageIO.write(image, "jpg", new File(outputPath));
-                return "/CyberEmbed_Web_exploded/public/img/"+name+".jpg";
+                return "/CyberEmbed_Web_exploded/public/img/github/"+name+".jpg";
+            }
+            else if(url.contains("kns.cnki.net")){
+                String title = document.select("h1").text();
+                Elements authors = document.select("#authorpart").get(0).children();
+                String author = "";
+                for(int i=0; i<authors.size(); i++)author += authors.get(i).text().replaceAll("\\d+", "").replaceAll(",", "")+ " ";
+                String abs = document.select("#ChDivSummary").text();
+                String topic = "";
+                Elements topics = document.select(".keywords").get(0).children();
+                for(int i=0; i<topics.size(); i++)topic += topics.get(i).text() + " ";
+                Elements infos = document.select("[class=total-inform]").get(0).children();
+                String downloads = "";
+                String pages = "";
+                for(int i=0; i<infos.size(); i++){
+                    if(infos.get(i).text().contains("下载：")){
+                        downloads = infos.get(i).text().strip().split("下载：")[0];
+                    }
+                    if(infos.get(i).text().contains("页数：")){
+                        pages = infos.get(i).text().strip().split("页数：")[0];
+                    }
+                }
+                BufferedImage image = PosterService.generateCnkiPoster(url, title, author, abs, topic, downloads, pages);
+                String name = author + title;
+                String outputPath = "./public/img/cnki/"+name+".jpg";
+                ImageIO.write(image, "jpg", new File(outputPath));
+                return "/CyberEmbed_Web_exploded/public/img/cnki/"+name+".jpg";
             }
         } catch (Exception e) {
-            System.out.println("get html content error");
+            return new String("parse url error");
         }
         return null;
     }
 
     public static void main(String[] args) {
-        getEmbed("https://github.com/cilebritain/PRML-Spring20-FDU");
+//        getEmbed("https://github.com/cilebritain/PRML-Spring20-FDU");
+        getEmbed("https://kns.cnki.net/KCMS/detail/33.1151.s.20201120.0950.002.html");
+//        getEmbed("https://kns.cnki.net/KCMS/detail/11.3536.F.20201120.1432.020.html");
+//        testImage();
     }
 }
