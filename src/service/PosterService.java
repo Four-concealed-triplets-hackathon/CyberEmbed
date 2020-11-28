@@ -273,5 +273,17 @@ public class PosterService {
      * an easy poster demo
      */
     public static void main(String[] args) {
+        String path = "./public/embed.jpg";
+        try {
+            BufferedImage b = generateSteamPoster("https://store.steampowered.com/app/1145360/Hades/",
+                    "https://media.st.dl.pinyuncloud.com/steam/apps/1145360/header.jpg?t=1606329416",
+                    "Defy the god of the dead as you hack and slash out of the Underworld in this rogue-like dungeon crawler from the creators of Bastion, Transistor, and Pyre.",
+                    "壓倒性好評 (29,615)", "壓倒性好評 (75,035)",
+                    "roguelike探险游戏"
+            );
+            ImageIO.write(b, "jpg", new File(path));
+        } catch (IOException e) {
+
+        }
     }
 }

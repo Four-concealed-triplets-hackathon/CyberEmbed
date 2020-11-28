@@ -36,6 +36,7 @@ public class CyberServlet extends HttpServlet {
 
     private void generatePic(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String url = request.getParameter("url");
+        System.out.println(url);
         String retUrl = SpiderService.getEmbed(url);
         String json = "{\"data\":[";
         json += "{\"code\":\"200\"},";
@@ -43,6 +44,7 @@ public class CyberServlet extends HttpServlet {
         json += "},";
         json = json.substring(0, json.length()-1);
         json += "]}";
+        System.out.println(retUrl);
         response.getWriter().write(json);
     }
 }
