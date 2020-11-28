@@ -8,7 +8,8 @@
 <html>
 <head>
     <title>Cyber Embed</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0">
     <link href="https://cdn.bootcss.com/font-awesome/5.8.0/css/all.css" rel="stylesheet"/>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"
@@ -22,15 +23,55 @@
             padding: 0;
             /*background: #000;*/
         }
+
         /*相应式布局*/
 
-        html { font-size:20px; }
-        @media(max-width:540px){ html { font-size:18px; } } /*Android常用宽度*/
-        @media(max-width:480px){ html { font-size:18px; } }		/*Android常用宽度*/
-        @media(max-width:414px){ html { font-size:15px; } }  /*i6Plus,i7Plus宽度*/
-        @media(max-width:375px){ html { font-size:14px; } }	/*i6,i7宽度*/
-        @media(max-width:360px){ html { font-size:14px; } }	/*Android常用宽度*/
-        @media(max-width:320px){ html { font-size:12px; } }		/*i5宽度*/
+        html {
+            font-size: 20px;
+        }
+
+        @media (max-width: 540px) {
+            html {
+                font-size: 18px;
+            }
+        }
+
+        /*Android常用宽度*/
+        @media (max-width: 480px) {
+            html {
+                font-size: 18px;
+            }
+        }
+
+        /*Android常用宽度*/
+        @media (max-width: 414px) {
+            html {
+                font-size: 15px;
+            }
+        }
+
+        /*i6Plus,i7Plus宽度*/
+        @media (max-width: 375px) {
+            html {
+                font-size: 14px;
+            }
+        }
+
+        /*i6,i7宽度*/
+        @media (max-width: 360px) {
+            html {
+                font-size: 14px;
+            }
+        }
+
+        /*Android常用宽度*/
+        @media (max-width: 320px) {
+            html {
+                font-size: 12px;
+            }
+        }
+
+        /*i5宽度*/
 
         /*广泛布局*/
         .disabled {
@@ -55,6 +96,7 @@
             top: 70%;
             left: 50%;
             transform: translate(-50%, -50%);
+            text-align: center;
         }
 
         .search-box {
@@ -66,7 +108,7 @@
             /*height: 2rem;*/
             border-radius: 2.5rem;
             padding: 0.5rem;
-            font-size:0.7rem;
+            font-size: 0.7rem;
             display: flex;
         }
 
@@ -92,7 +134,7 @@
             float: left;
             padding: 0;
             color: #000;
-            display:flex;
+            display: flex;
             font-size: 0.8rem;
             transition: 0.4s;
             line-height: 2.5rem;
@@ -238,6 +280,8 @@
         "<div class=\"rect4\"></div>\n" + "<div class=\"rect5\"></div>\n" + "</div>"
     let downloadButton = "<button onclick=\"download()\" class=\"remodal-confirm\">Download</button>"
     let cancelButton = "<button data-remodal-action=\"cancel\" class=\"remodal-cancel\">Cancel</button>"
+    let errorcode = "\"<p>❌ url parse failed ❌<br>We haven't supported the website \" +\n" +
+        "                \"<br>or something goes wrong with the url</p>\""
     window.REMODAL_GLOBALS = {
         NAMESPACE: 'modal',
         DEFAULTS: {
@@ -251,6 +295,7 @@
         if (a !== "" && a != null) {
             $('#button-container').html(cancelButton)
             $('#modal-content').html(waiting)
+            $('#modal-content').html()
             inst.open();
             $.ajax(
                 {
@@ -263,9 +308,13 @@
                     // contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
                     traditional: true,
                     success: function (data) {
-                        $('#modal-content').html("<img id=\"output\" src=\"" + data["data"][1]["url"] + "\"\\>")
-                        $('#button-container').append(downloadButton)
-                        //
+                        if (data["data"][1]["url"] === "parse url error") {
+                            $('#modal-content').html(errorcode);
+                        } else {
+                            $('#modal-content').html("<img id=\"output\" src=\"" + data["data"][1]["url"] + "\"\\>")
+                            $('#button-container').append(downloadButton)
+                            //
+                        }
                     }
                 }
             )
