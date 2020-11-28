@@ -150,7 +150,7 @@ public class PosterService {
         return embed;
     }
 
-    private static BufferedImage generateSteamPoster(String url, String description, String recentComment,String allComment, String recentNum,String allNum,String firstTag) throws IOException {
+    private static BufferedImage generateSteamPoster(String url,String headerUrl, String description, String recentComment,String allComment, String firstTag) throws IOException {
         BufferedImage embed = new BufferedImage(460, 501, BufferedImage.TYPE_INT_RGB);
         Graphics2D g = embed.createGraphics();
 
@@ -160,7 +160,7 @@ public class PosterService {
         BufferedImage bg = ImageIO.read(new File("./public/img/resources/embed_steam_bg.png"));
         g.drawImage(bg.getScaledInstance(bg.getWidth(), bg.getHeight(), Image.SCALE_SMOOTH), 0, 0, 460, 501, null);
         //绘制头图
-        BufferedImage header = ImageIO.read(new File("./public/img/resources/header.jpg"));;
+        BufferedImage header = ImageIO.read(new File(headerUrl));;
         g.drawImage(header.getScaledInstance(header.getWidth(), header.getHeight(), Image.SCALE_SMOOTH), 0, 0, 460 , 215, null);
 
         g.setFont(new Font("Microsoft YaHei", Font.PLAIN, 17));
@@ -192,8 +192,8 @@ public class PosterService {
         }
         g.setFont(new Font("Microsoft YaHei", Font.PLAIN, 17));
         g.setColor(new Color(255, 255, 255));
-        g.drawString("最近评论："+recentComment+" ( "+recentNum+" ) ",24,330);
-        g.drawString("全部评论："+allComment+" ( "+allNum+" ) ",24,360);
+        g.drawString("最近评论："+recentComment,24,330);
+        g.drawString("全部评论："+allComment,24,360);
         g.drawString("热门标签：",24,390);
         g.setColor(new Color(101, 192, 241));
         g.drawString(firstTag,46,440);
@@ -264,10 +264,10 @@ public class PosterService {
 //            );
 //            ImageIO.write(poster, "jpg", new File(outputPath));
             BufferedImage poster = generateSteamPoster("https://store.steampowered.com/app/1145360/Hades/"
-            ,"Defy the god of the dead as you hack and slash out of the \n" +
+            ,"","Defy the god of the dead as you hack and slash out of the \n" +
                             "Underworld in this rogue-like dungeon crawler from the \n" +
                             "creators of Bastion, Transistor, and Pyre.",
-                    "压倒性好评","压倒性好评","3,000","60,000",
+                    "压倒性好评","压倒性好评",
                     "RogueLike探险"
             );
             ImageIO.write(poster,"jpg",new File(outputPath));
