@@ -31,7 +31,7 @@ Hackathon2020@eastchina， Team 四暗刻。
 ⚡CyberEmbed 支持:
 * Github <img src="/home/xuanzitao/work/CyberEmbed/public/img/resources/github_logo.png" alt="github" style="zoom:18%;" />
 * 知网 <img src="/home/xuanzitao/work/CyberEmbed/public/img/resources/cnki.png" alt="twitter" style="zoom:140%;" />
-* Steam <img src="/home/xuanzitao/work/CyberEmbed/public/img/resources/steam.png" alt="twitter" style="zoom:4%;" />
+* Steam <img src="/home/xuanzitao/work/CyberEmbed/public/img/resources/steam.png" alt="steam" style="zoom:4%;" />
 
 # 灵感
 

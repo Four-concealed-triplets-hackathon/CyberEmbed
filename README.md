@@ -3,7 +3,13 @@
 		<img src="./public/img/resources/题图.png" alt="题图" />
 	<br>
 <p>
-[![GitHub](https://camo.githubusercontent.com/8e97671814c8ac48e391c566421747af746b54a9482210d3f93847498e4d3124/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f6c6963656e73652f68756767696e67666163652f7472616e73666f726d6572732e7376673f636f6c6f723d626c7565)](https://github.com/Four-concealed-triplets-hackathon/CyberEmbed/blob/main/LICENSE)
+
+<p align="center">
+	<a href="https://github.com/Four-concealed-triplets-hackathon/CyberEmbed/blob/main/LICENSE">
+		<img alt="GitHub" src="https://img.shields.io/github/license/huggingface/transformers.svg?color=blue"
+	</a>
+<p>
+
 
 Hackathon2020@eastchina, Team Four Concealed Triplets. A website that can embed website content into a single image (supporting Github, CNKI, Twitter, Spotify).
 
@@ -26,7 +32,7 @@ Hackathon2020@eastchina, Team Four Concealed Triplets. A website that can embed 
 ⚡CyberEmbed supports:
 * Github <img src="./public/img/resources/github_logo.png" alt="github" style="zoom:18%;" />
 * CNKI <img src="./public/img/resources/cnki.png" alt="twitter" style="zoom:140%;" />
-* Steam <img src="/home/xuanzitao/work/CyberEmbed/public/img/resources/steam.png" alt="twitter" style="zoom:4%;" />
+* Steam <img src="/home/xuanzitao/work/CyberEmbed/public/img/resources/steam.png" alt="steam" style="zoom:4%;" />
 
 ## Insight
 
