@@ -26,7 +26,7 @@ public class SpiderService {
                 String stars = document.getElementsByAttributeValueContaining("aria-label", "starred this repository").text();
                 String forks = document.getElementsByAttributeValueContaining("aria-label", "forked this repository").text();
                 BufferedImage image = PosterService.generateGithubPoster(url, title, author, desc, stars, forks);
-                String name = author + title;
+                String name = String.valueOf(System.currentTimeMillis());
                 String outputPath = "./public/img/github/"+name+".jpg";
                 ImageIO.write(image, "jpg", new File(outputPath));
                 return "/CyberEmbed_Web_exploded/public/img/github/"+name+".jpg";
@@ -53,7 +53,7 @@ public class SpiderService {
                     }
                 }
                 BufferedImage image = PosterService.generateCnkiPoster(url, title, author, abs, topic, downloads, pages);
-                String name = author + title;
+                String name = String.valueOf(System.currentTimeMillis());
                 String outputPath = "./public/img/cnki/"+name+".jpg";
                 ImageIO.write(image, "jpg", new File(outputPath));
                 return "/CyberEmbed_Web_exploded/public/img/cnki/"+name+".jpg";
@@ -70,10 +70,7 @@ public class SpiderService {
                 else allReview = info.get(1).children().get(0).text() + info.get(1).children().get(1).text();
                 String tag = document.select("[class=glance_tags popular_tags]").get(0).children().get(0).text();
                 BufferedImage image = PosterService.generateSteamPoster(url, header_photo, desc, recentReview, allReview, tag);
-                String name = title;
-                Pattern pattern = Pattern.compile("[\\s\\\\/:\\*\\?\\\"<>\\|]");
-                Matcher matcher = pattern.matcher(name);
-                name= matcher.replaceAll("").replaceAll("[^0-9a-zA-Z]J*","");
+                String name = String.valueOf(System.currentTimeMillis());
                 String outputPath = "./public/img/steam/"+name+".jpg";
                 ImageIO.write(image, "jpg", new File(outputPath));
                 return "/CyberEmbed_Web_exploded/public/img/steam/"+name+".jpg";
