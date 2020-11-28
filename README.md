@@ -26,8 +26,7 @@ Hackathon2020@eastchina, Team Four Concealed Triplets. A website that can embed 
 ⚡CyberEmbed supports:
 * Github <img src="./public/img/resources/github_logo.png" alt="github" style="zoom:18%;" />
 * CNKI <img src="./public/img/resources/cnki.png" alt="twitter" style="zoom:140%;" />
-* Twitter <img src="./public/img/resources/twitter.png" alt="twitter" style="zoom:75%;" />
-* Spotify  <img src="./public/img/resources/Spotify.png" alt="twitter" style="zoom:4%;" />
+* Steam <img src="/home/xuanzitao/work/CyberEmbed/public/img/resources/steam.png" alt="twitter" style="zoom:4%;" />
 
 ## Insight
 
