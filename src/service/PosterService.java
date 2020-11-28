@@ -18,7 +18,7 @@ public class PosterService {
     /**
      * generate poster for Github repository
      */
-    private static BufferedImage generateGithubPoster(String url, String title, String author, String desc, String star, String fork) throws IOException {
+    public static BufferedImage generateGithubPoster(String url, String title, String author, String desc, String star, String fork) throws IOException {
         BufferedImage poster = new BufferedImage(1000, 600, BufferedImage.TYPE_INT_RGB);
         Graphics2D g = poster.createGraphics();
 
