@@ -11,7 +11,7 @@
 
 Hackathon2020@eastchina, Team Four Concealed Triplets. A website that can embed website content into a single image (supporting Github, CNKI and steam).
 
-[中文版](https://github.com/Four-concealed-triplets-hackathon/CyberEmbed/blob/main/README_zh.md)
+[中文版README](https://github.com/Four-concealed-triplets-hackathon/CyberEmbed/blob/main/README_zh.md)
 
 [Online Demo](http://yukiruuku.design/CyberEmbed_Web_exploded/index.jsp)
 
